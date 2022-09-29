@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	//init postgres
+	// init postgres
 	err := dao.InitPostgres()
 	if err != nil {
 		panic(err)
@@ -19,4 +19,5 @@ func main() {
 	r := router.SetupRouter()
 
 	r.Run("localhost:3000")
+
 }

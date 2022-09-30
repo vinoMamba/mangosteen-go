@@ -1,6 +1,9 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/mangosteen-go/controller"
+)
 
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
@@ -9,7 +12,7 @@ func SetupRouter() *gin.Engine {
 	v1 := r.Group("/api/v1")
 	validationCodes := v1.Group("/validation_codes")
 	{
-		validationCodes.POST("/", func(ctx *gin.Context) {})
+		validationCodes.POST("/", controller.CreateValidationCode)
 	}
 	session := v1.Group("/session")
 	{

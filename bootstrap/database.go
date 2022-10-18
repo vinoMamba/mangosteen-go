@@ -3,6 +3,7 @@ package bootstrap
 import (
 	"fmt"
 
+	"github.com/vinoMamba/mangosteen-go/app/models/user"
 	"github.com/vinoMamba/mangosteen-go/pkg/config"
 	"github.com/vinoMamba/mangosteen-go/pkg/database"
 	"gorm.io/driver/postgres"
@@ -17,4 +18,5 @@ func SetupDB() {
 		config.Get("db.port"),
 	)
 	database.Connect(postgres.Open(dsn))
+	database.DB.AutoMigrate(&user.User{})
 }

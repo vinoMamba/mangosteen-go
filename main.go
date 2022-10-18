@@ -20,6 +20,7 @@ func main() {
 	config.InitConfig(env)
 
 	bootstrap.SetupDB()
+	bootstrap.SetupRedis()
 
 	r := gin.New()
 	bootstrap.SetupRouter(r)

@@ -3,6 +3,7 @@ package auth
 import (
 	"github.com/gin-gonic/gin"
 	v1 "github.com/vinoMamba/mangosteen-go/app/controllers/api/v1"
+	"github.com/vinoMamba/mangosteen-go/app/requests"
 )
 
 type SignupController struct {
@@ -10,17 +11,15 @@ type SignupController struct {
 }
 
 func (sc *SignupController) IsEmailExist(c *gin.Context) {
-	type EmailExistRequest struct {
-		Email string `json:"email"`
-	}
-	request := EmailExistRequest{}
+	request := requests.EmailExistRequest{}
 	if err := c.ShouldBindJSON(&request); err != nil {
 		c.JSON(422, gin.H{
 			"error": err.Error(),
 		})
-	} else {
-		c.JSON(200, gin.H{
-			"data": request.Email,
-		})
+		return
 	}
+	requests.ValidateEmailExistRequest(request)
+	c.JSON(200, gin.H{
+		"data": request.Email,
+	})
 }

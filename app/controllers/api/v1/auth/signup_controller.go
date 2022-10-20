@@ -5,6 +5,7 @@ import (
 	v1 "github.com/vinoMamba/mangosteen-go/app/controllers/api/v1"
 	"github.com/vinoMamba/mangosteen-go/app/models/user"
 	"github.com/vinoMamba/mangosteen-go/app/requests"
+	"github.com/vinoMamba/mangosteen-go/pkg/response"
 )
 
 type SignupController struct {
@@ -26,7 +27,7 @@ func (sc *SignupController) IsEmailExist(c *gin.Context) {
 		return
 	}
 
-	c.JSON(200, gin.H{
+	response.Data(c, gin.H{
 		"exist": user.IsEmailExist(request.Email),
 	})
 }

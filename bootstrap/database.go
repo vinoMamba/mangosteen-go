@@ -19,4 +19,5 @@ func SetupDB() {
 	)
 	database.Connect(postgres.Open(dsn))
 	database.DB.AutoMigrate(&user.User{})
+	fmt.Println("Database connected")
 }

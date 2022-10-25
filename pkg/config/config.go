@@ -1,6 +1,8 @@
 package config
 
 import (
+	"fmt"
+
 	"github.com/spf13/cast"
 	viperlib "github.com/spf13/viper"
 	"github.com/vinoMamba/mangosteen-go/pkg/helpers"
@@ -50,6 +52,7 @@ func Add(name string, configFn ConfigFunc) {
 
 func Env(envName string, defaultValue string) interface{} {
 	if !viper.IsSet(envName) && helpers.IsEmpty(viper.Get(envName)) {
+		fmt.Println("env not set: ", envName)
 		return defaultValue
 	}
 	return viper.Get(envName)
